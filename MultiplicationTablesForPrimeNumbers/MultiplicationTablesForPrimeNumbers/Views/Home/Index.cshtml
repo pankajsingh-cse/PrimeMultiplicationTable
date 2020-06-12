@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Prime tables";
+}
+
+@model MultiplicationTablesForPrimeNumbers.UI.Models.MultiplicationModel
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Enter a whole number (N)</legend>
+        <p>
+            @Html.TextBoxFor(m => m.InputNumber)
+            <input type="submit" value="Submit" />
+        </p>
+    </fieldset>
+}
+
+@if (ViewBag.InputNumber > 0)
+{
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+            <thead>
+                <tr>
+                    <th></th>
+                    @for (int i = 0; i < ViewBag.InputNumber; i++)
+                    {
+                        <th>@ViewBag.PrimeNumbers[i]</th>
+                    }
+                </tr>
+            </thead>
+            @for (int i = 0; i < ViewBag.InputNumber; i++)
+            {
+                <tr>
+                    <td><b>@ViewBag.PrimeNumbers[i]</b></td>
+                    @for (int j = 0; j < ViewBag.InputNumber; j++)
+                    {
+                        <td>
+                            @ViewBag.Table[i, j]
+                        </td>
+                    }
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
